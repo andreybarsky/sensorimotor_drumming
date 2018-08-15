@@ -1,0 +1,267 @@
+
+<?xml version="1.0" ?>
+    <sdf version="1.4">
+      <world name="default">
+        <include>
+          <uri>model://ground_plane</uri>
+        </include>
+
+        <include>
+          <uri>model://sun</uri>
+        </include>
+
+        
+        <model name="/">
+          <pose>1.054 -5.454 0.727 1.57 0 1.57</pose>
+          <static>true</static>
+          <link name="body">
+            
+            <visual name="visual">
+              <geometry>
+                <mesh><uri>file:///home/andrey/bax/src/drumming/world/models/drumset.dae</uri>
+                <scale>0.005 0.005 0.005 </scale></mesh>
+              </geometry>
+            </visual>
+            
+          </link>
+        </model>
+
+
+        <model name="snare">
+          <pose>0.798 -0.582 0.922 0 0 0</pose>
+          <static>true</static>
+            <link name="body">
+                
+            <visual name="visual">
+                <geometry>
+                  <cylinder>
+                    <length>0.050</length>
+                    <radius>0.210</radius>
+                  </cylinder>
+                </geometry>
+                
+                <material>
+                    <ambient>0 1 0 1</ambient>
+                    <diffuse>0 1 0 1</diffuse>
+                    <specular>0.1 0.1 0.1 1</specular>
+                    <emissive>0 0 0 0</emissive>
+                </material>
+              </visual>
+                
+            <collision name="collision">
+                <geometry>
+                  <cylinder>
+                    <length>0.055</length>
+                    <radius>0.210</radius>
+                  </cylinder>
+                </geometry>
+            </collision>
+            </link>
+          </model>
+
+
+        <model name="hihat">
+          <pose>0.892 0.531 0.895 0 0 0</pose>
+          <static>true</static>
+            <link name="body">
+                
+            <visual name="visual">
+                <geometry>
+                  <cylinder>
+                    <length>0.050</length>
+                    <radius>0.220</radius>
+                  </cylinder>
+                </geometry>
+                
+                <material>
+                    <ambient>1 0 0 1</ambient>
+                    <diffuse>1 0 0 1</diffuse>
+                    <specular>0.1 0.1 0.1 1</specular>
+                    <emissive>0 0 0 0</emissive>
+                </material>
+              </visual>
+                
+            <collision name="collision">
+                <geometry>
+                  <cylinder>
+                    <length>0.055</length>
+                    <radius>0.220</radius>
+                  </cylinder>
+                </geometry>
+            </collision>
+            </link>
+          </model>
+
+
+        <model name="cymbal1">
+          <pose>0.932 0.671 1.404 -0.078 -0.041 0.003</pose>
+          <static>true</static>
+            <link name="body">
+                
+            <visual name="visual">
+                <geometry>
+                  <cylinder>
+                    <length>0.050</length>
+                    <radius>0.220</radius>
+                  </cylinder>
+                </geometry>
+                
+                <material>
+                    <ambient>1 1 0 1</ambient>
+                    <diffuse>1 1 0 1</diffuse>
+                    <specular>0.1 0.1 0.1 1</specular>
+                    <emissive>0 0 0 0</emissive>
+                </material>
+              </visual>
+                
+            <collision name="collision">
+                <geometry>
+                  <cylinder>
+                    <length>0.055</length>
+                    <radius>0.220</radius>
+                  </cylinder>
+                </geometry>
+            </collision>
+            </link>
+          </model>
+
+
+        <model name="cymbal2">
+          <pose>0.9567 -0.4134 1.406 0.058748 -0.067061 0.002778</pose>
+          <static>true</static>
+            <link name="body">
+                
+            <visual name="visual">
+                <geometry>
+                  <cylinder>
+                    <length>0.050</length>
+                    <radius>0.220</radius>
+                  </cylinder>
+                </geometry>
+                
+                <material>
+                    <ambient>1 0.5 0 1</ambient>
+                    <diffuse>1 0.5 0 1</diffuse>
+                    <specular>0.1 0.1 0.1 1</specular>
+                    <emissive>0 0 0 0</emissive>
+                </material>
+              </visual>
+                
+            <collision name="collision">
+                <geometry>
+                  <cylinder>
+                    <length>0.055</length>
+                    <radius>0.220</radius>
+                  </cylinder>
+                </geometry>
+            </collision>
+            </link>
+          </model>
+
+
+        <model name="tom1">
+          <pose>1.204 0.26 1.152 0.26 -1.187 0.176</pose>
+          <static>true</static>
+            <link name="body">
+                
+            <visual name="visual">
+                <geometry>
+                  <cylinder>
+                    <length>0.050</length>
+                    <radius>0.190</radius>
+                  </cylinder>
+                </geometry>
+                
+                <material>
+                    <ambient>1 0 1 1</ambient>
+                    <diffuse>1 0 1 1</diffuse>
+                    <specular>0.1 0.1 0.1 1</specular>
+                    <emissive>0 0 0 0</emissive>
+                </material>
+              </visual>
+                
+            <collision name="collision">
+                <geometry>
+                  <cylinder>
+                    <length>0.055</length>
+                    <radius>0.190</radius>
+                  </cylinder>
+                </geometry>
+            </collision>
+            </link>
+          </model>
+
+
+        <model name="tom2">
+          <pose>1.201 -0.253 1.147 -0.563 -1.187 0.176</pose>
+          <static>true</static>
+            <link name="body">
+                
+            <visual name="visual">
+                <geometry>
+                  <cylinder>
+                    <length>0.050</length>
+                    <radius>0.190</radius>
+                  </cylinder>
+                </geometry>
+                
+                <material>
+                    <ambient>0 0.5 1 1</ambient>
+                    <diffuse>0 0.5 1 1</diffuse>
+                    <specular>0.1 0.1 0.1 1</specular>
+                    <emissive>0 0 0 0</emissive>
+                </material>
+              </visual>
+                
+            <collision name="collision">
+                <geometry>
+                  <cylinder>
+                    <length>0.055</length>
+                    <radius>0.190</radius>
+                  </cylinder>
+                </geometry>
+            </collision>
+            </link>
+          </model>
+
+
+        <model name="bass">
+          <pose>1.051 0.041 0.39 3.1416 -1.5708 3.1416</pose>
+          <static>true</static>
+            <link name="body">
+                
+            <visual name="visual">
+                <geometry>
+                  <cylinder>
+                    <length>0.050</length>
+                    <radius>0.350</radius>
+                  </cylinder>
+                </geometry>
+                
+                <material>
+                    <ambient>0 0.2 1 1</ambient>
+                    <diffuse>0 0.2 1 1</diffuse>
+                    <specular>0.1 0.1 0.1 1</specular>
+                    <emissive>0 0 0 0</emissive>
+                </material>
+              </visual>
+                
+            <collision name="collision">
+                <geometry>
+                  <cylinder>
+                    <length>0.055</length>
+                    <radius>0.350</radius>
+                  </cylinder>
+                </geometry>
+            </collision>
+            </link>
+          </model>
+
+        <physics type="ode">
+          <real_time_update_rate>1000.0</real_time_update_rate>
+          <gravity>
+        0.0 0.0 -9.81
+          </gravity>
+        </physics>
+      </world>
+    </sdf>
