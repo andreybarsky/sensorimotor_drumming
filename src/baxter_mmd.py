@@ -5,6 +5,7 @@ import pickle
 import sys
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+from matplotlib.mlab import PCA
 from matplotlib import gridspec
 from copy import deepcopy
 import random
@@ -22,6 +23,57 @@ class MultimodalData(object):
             self.audio = self.bin_audio(audio) # into matrix where each row corresponds to a video frame / time slice
         else:
             self.audio = audio
+
+    def pca_joints(self, num, data=None):
+        """compresses joint data using PCA and returns a projection onto num axes.
+        optionally, PCA weights can be computed based on another dataset.
+        if "collisions", also highlight the points where drum collisions are detected"""
+        if data is None:
+            data = self.joints
+        lpca = PCA(data[:,:7]) # joint positions only
+        rpca = PCA(data[:,7:14])
+
+        # extract 'num' components
+        lproj = lpca.project(self.joints[:,:7], minfrac=lpca.fracs[num-1])
+        rproj = rpca.project(self.joints[:,7:14], minfrac=rpca.fracs[num-1])
+
+        return np.concatenate((lproj, rproj), axis=1)
+
+    def show_joints(self, collisions=True, vertical=False, data=None):
+        """plot joint angles over time using PCA"""
+        hz = self.header['framerate']
+
+        # plot PCA-reduced joints, either sideways or not::
+        frames = np.arange(self.header['frames'])
+        pca_joint_data = self.pca_joints(1, data=data)
+        if not vertical:
+            plt.plot(frames, pca_joint_data)
+        else:
+            plt.plot(pca_joint_data, frames)
+
+        if collisions:
+            left_beat_frames = []
+            right_beat_frames = []
+            drum_arms ={'hihat'  : 'left' ,
+                        'cymbal1': 'left' ,
+                        'tom1'   : 'left' ,
+                        'snare'  : 'right',
+                        'cymbal2': 'right',
+                        'tom2'   : 'right'}
+
+            # get collision times, convert them into frame indices for each arm:
+            for drum_name, beat_times in self.collisions.items():
+                for t in beat_times:
+                    beat_frame = int(np.round(t*hz))
+                    if drum_arms[drum_name]=='left':
+                        left_beat_frames.append(beat_frame)
+                    else:
+                        right_beat_frames.append(beat_frame)
+            plt.plot(left_beat_frames, pca_joint_data[left_beat_frames,0], 'o')
+            plt.plot(right_beat_frames, pca_joint_data[right_beat_frames,1], 'o')
+        plt.show()
+
+
 
     def bin_audio(self, audio):
         """Slices a 44100 hz audio wave into chunks.
@@ -590,3 +642,7 @@ def drop_modes(data_tuple, num_to_drop=[0,1,2]):
                 newdata[m][b] *= 0
 
     return newdata
+
+if __name__=='__main__':
+    mmd = load_mmd_obj('trials/trial001.mmd')
+    mmd.show_joints()

@@ -172,10 +172,10 @@ class Recorder(object):
 
         # add those values to the full array with timestamp:
         self.imgbuffer[framenum] = img
-        rospy.loginfo('Image captured at time: %.5f' % rospy.get_time())
+        # rospy.loginfo('Image captured at time: %.5f' % rospy.get_time())
         # print('Jointbuffer shape: %s' % str(self.jointbuffer.shape))
         self.jointbuffer[framenum] = joints
-        rospy.loginfo('Joint angles captured at time: %.5f' % rospy.get_time())
+        # rospy.loginfo('Joint angles captured at time: %.5f' % rospy.get_time())
         self.timestamps[framenum] = timestamp
 
     def start(self, hz, secs):
@@ -189,6 +189,7 @@ class Recorder(object):
 
         self.imgrec.start()
         self.audiorec.start()
+        self.jointrec.__init__()
         # joint recorder doesn't need starting
 
     def save(self, filename):
